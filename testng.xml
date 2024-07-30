@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <test name="TitleValidateTest">
+        <classes>
+            <class name="testComponent.TestCase_01_ValidateCreateAccountFunctionality"/>
+        </classes>
+    </test>
+    <test name="LinkValidateTest">
+        <classes>
+            <class name="testComponent.TestCase_02_ValidateSignInFunctionality"/>
+        </classes>
+    </test>
+    <test name="CreateAccountTest">
+        <classes>
+            <class name="testComponent.TestCase_03_ValidateSearchFlightOnewaytripFunctionality"/>
+        </classes>
+    </test>
+    <test name="SignInTest">
+        <classes>
+            <class name="testComponent.TestCase_04_ValidateSearchFlightRoundtripFunctionality"/>
+        </classes>
+    </test>
+    <test name="ValidateTopMenuTitleTest">
+        <classes>
+            <class name="testComponent.TestCase_05_ValidateBookingPageDetails"/>
+        </classes>
+    </test>
+    <test name="ValidateBottomMenuTitleTest">
+        <classes>
+            <class name="testComponent.TestCase_06_ValidateHomePageMenus"/>
+        </classes>
+    </test>
+
+</suite>
