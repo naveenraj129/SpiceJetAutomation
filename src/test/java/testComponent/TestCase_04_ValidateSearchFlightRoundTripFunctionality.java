@@ -6,18 +6,18 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageComponent.HomePage;
 
-public class TestCase_04_ValidateSearchFlightRoundtripFunctionality extends BaseClass {
+public class TestCase_04_ValidateSearchFlightRoundTripFunctionality extends BaseClass {
 
     @BeforeTest
     public void setup() {
-        testName = "SearchFlightFunctionality";
-        testDescription = "SearchFlightFunctionality";
+        testName = "tc_04_validateSearchFlightRoundTripFunctionality";
+        testDescription = "SearchFlightRoundTripFunctionality";
         testCategory = "Regression";
 
     }
 
-    @Test()
-    public void testCase_03_ValidateSearchFlightRoundTripFunctionality() throws Exception {
+    @Test(priority = 4)
+    public void tc_04_validateSearchFlightRoundTripFunctionality() throws InterruptedException {
         HomePage hp = new HomePage();
         String actMsg = hp.selectRoundTrip();
         String expMsg = "Select your Departure to Mumbai";

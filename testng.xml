@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-    <test name="TitleValidateTest">
+    <test name="tc_01_validateSuccessCreateAccountFunctionality">
         <classes>
             <class name="testComponent.TestCase_01_ValidateCreateAccountFunctionality"/>
         </classes>
     </test>
-    <test name="LinkValidateTest">
+    <test name="tc_02_validateSignInFunctionality">
         <classes>
             <class name="testComponent.TestCase_02_ValidateSignInFunctionality"/>
         </classes>
     </test>
-    <test name="CreateAccountTest">
+    <test name="tc_03_validateSearchFlightOneWayTripFunctionality">
         <classes>
-            <class name="testComponent.TestCase_03_ValidateSearchFlightOnewaytripFunctionality"/>
+            <class name="testComponent.TestCase_03_ValidateSearchFlightOnewayTripFunctionality"/>
         </classes>
     </test>
-    <test name="SignInTest">
+    <test name="tc_04_validateSearchFlightRoundTripFunctionality">
         <classes>
-            <class name="testComponent.TestCase_04_ValidateSearchFlightRoundtripFunctionality"/>
+            <class name="testComponent.TestCase_04_ValidateSearchFlightRoundTripFunctionality"/>
         </classes>
     </test>
-    <test name="ValidateTopMenuTitleTest">
+    <test name="tc_05_validateBookingPageFailureFunctionality">
         <classes>
-            <class name="testComponent.TestCase_05_ValidateBookingPageDetails"/>
+            <class name="testComponent.TestCase_05_ValidateBookingPageFailureFunctionality"/>
         </classes>
     </test>
-    <test name="ValidateBottomMenuTitleTest">
+    <test name="tc_06_validateBookingPageSuccessFunctionality">
         <classes>
-            <class name="testComponent.TestCase_06_ValidateHomePageMenus"/>
+            <class name="testComponent.TestCase_06_ValidateBookingPageSuccessFunctionality"/>
+        </classes>
+    </test>
+
+    <test name="tc_07_validatePaymentPageFunctionality">
+        <classes>
+            <class name="testComponent.TestCase_07_ValidatePaymentPageFunctionality"/>
+        </classes>
+    </test>
+    <test name="tc_08_validateHomePageMenus">
+        <classes>
+            <class name="testComponent.TestCase_08_ValidateHomePageMenus"/>
         </classes>
     </test>
 

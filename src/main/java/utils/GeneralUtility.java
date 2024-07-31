@@ -5,14 +5,10 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.testng.asserts.*;
+import org.testng.asserts.SoftAssert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -29,8 +25,6 @@ public class GeneralUtility {
     public String testCategory;
 
 
-
-
     public static void reportInit() {
         ExtentHtmlReporter html = new ExtentHtmlReporter(System.getProperty("user.dir") + "/report1.html");
         report = new ExtentReports();
@@ -40,16 +34,14 @@ public class GeneralUtility {
     public static void switchingTabs() {
         Set<String> WindowHandles = driver.getWindowHandles();
         List<String> listwindow = new ArrayList(WindowHandles);
-        driver.switchTo().window((String)listwindow.get(1));
+        driver.switchTo().window((String) listwindow.get(1));
     }
-
 
 
     public static void softAssert(String actResult, String expResult) {
         SoftAssert sa = new SoftAssert();
         sa.assertEquals(actResult, expResult);
     }
-
 
 
     public static Object[][] dataReader(String sheetName) throws IOException {

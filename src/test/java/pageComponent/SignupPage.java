@@ -61,6 +61,7 @@ public class SignupPage extends WebUtility {
 
 
     public String createAccountSuccessFunctionality() throws InterruptedException {
+        explicitWait(selectTitle, 15);
         elementClick(selectTitle);
         elementClick(dropDown);
         typeText(firstName, "Naveen");

@@ -42,35 +42,41 @@ public class PaymentPage extends BaseClass {
     @FindBy(xpath = "//div[@data-testid='common-proceed-to-pay']")
     WebElement proceedToPayButton;
 
+ @FindBy(xpath = "//div[text()='Payment Failure']")
+    WebElement errorMessage;
+
 
     public PaymentPage() {
         PageFactory.initElements(driver, this);
     }
 
 
-    public void paymentDetailsPage() throws InterruptedException {
+    public String paymentDetailsPage() throws InterruptedException {
+        explicitWait(iFrameCardNumber , 5);
         switchToFrame(iFrameCardNumber);
-        typeText(cardNumber, "5425233430109903");
+        //if this fails try with someother dummy number
+        typeText(cardNumber,  "5105105105105100");
         switchBackFromFrame();
-        Thread.sleep(2000);
+        explicitWait(iFrameCardNumber , 5);
         switchToFrame(iFrameCardName);
         typeText(nameOnCard, "Naveen");
         switchBackFromFrame();
-        Thread.sleep(2000);
+        explicitWait(iFrameExpMonth , 5);
         switchToFrame(iFrameExpMonth);
         typeText(expMonthNumber, "09");
         switchBackFromFrame();
-        Thread.sleep(2000);
+        explicitWait(iFrameExpYear , 5);
         switchToFrame(iFrameExpYear);
         typeText(expYearNumber, "28");
         switchBackFromFrame();
-        Thread.sleep(2000);
+        explicitWait(iFrameCVV , 5);
         switchToFrame(iFrameCVV);
         typeText(securityCode, "167");
         switchBackFromFrame();
-        Thread.sleep(2000);
+        waitExplicit(proceedToPayButton , 30);
         elementClick(proceedToPayButton);
-
+        String actMsg = errorMessage.getText();
+        return actMsg;
     }
 
 }

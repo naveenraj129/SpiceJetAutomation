@@ -6,20 +6,20 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageComponent.HomePage;
 
-public class TestCase_03_ValidateSearchFlightOnewaytripFunctionality extends BaseClass {
+public class TestCase_03_ValidateSearchFlightOnewayTripFunctionality extends BaseClass {
 
 
     @BeforeTest
     public void setup() {
-        testName = "SearchFlightFunctionality";
-        testDescription = "SearchFlightFunctionality";
+        testName = "tc_03_validateSearchFlightOneWayTripFunctionality";
+        testDescription = "SearchFlightOnewayFunctionality";
         testCategory = "Regression";
 
     }
 
-    @Test(priority=3)
-    public void testCase_03_ValidateSearchFlightOneWayFunctionality() throws Exception {
-        HomePage hp=new HomePage();
+    @Test(priority = 3)
+    public void tc_03_validateSearchFlightOneWayTripFunctionality() throws InterruptedException {
+        HomePage hp = new HomePage();
         String actMsg = hp.selectOneWayTrip();
 
         String expMsg = "Select your Departure to Mumbai";
@@ -30,4 +30,4 @@ public class TestCase_03_ValidateSearchFlightOnewaytripFunctionality extends Bas
             test.log(Status.FAIL, testName + " - Failed");
         }
     }
-    }
+}

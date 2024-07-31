@@ -1,11 +1,9 @@
 package pageComponent;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import utils.WebUtility;
-
 
 
 public class LoginPage extends WebUtility {
@@ -19,17 +17,16 @@ public class LoginPage extends WebUtility {
     WebElement successMessage;
 
 
-
-
     public LoginPage() {
 
         PageFactory.initElements(driver, this);
     }
 
-    public String validateSignInPage() throws InterruptedException {
-
+    public String validateSignInPage() {
+        explicitWait(phoneNumber, 15);
         typeText(phoneNumber, "8778335842");
         typeText(passwordBox, "EVANaura@129");
+        waitExplicit(signInButton, 10);
         elementClick(signInButton);
         String actMsg = successMessage.getText();
         return actMsg;

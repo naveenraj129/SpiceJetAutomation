@@ -4,27 +4,27 @@ import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pageComponent.BookingPage;
 import pageComponent.HomePage;
-import pageComponent.LoginPage;
 
-public class TestCase_02_ValidateSignInFunctionality extends BaseClass {
+public class TestCase_06_ValidateBookingPageSuccessFunctionality extends BaseClass {
 
 
     @BeforeTest
     public void setup() {
-        testName = "tc_02_validateSignInFunctionality";
-        testDescription = "Sign-In Functionality";
+        testName = "tc_06_validateBookingPageSuccessFunctionality";
+        testDescription = "BookingPageFunctionality";
         testCategory = "Regression";
 
     }
 
-    @Test(priority = 2)
-    public void tc_02_validateSignInFunctionality() throws InterruptedException {
+    @Test()
+    public void tc_06_validateBookingPageSuccessFunctionality() throws Exception {
         HomePage hp = new HomePage();
-        hp.goToLogin();
-        LoginPage ln = new LoginPage();
-        String actMsg = ln.validateSignInPage();
-        String expMsg = "Hi Naveen";
+        hp.selectOneWayTrip();
+        BookingPage bp = new BookingPage();
+        String actMsg = bp.bookingPageSuccessFunctionality();
+        String expMsg = "Payment Methods";
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
             test.log(Status.PASS, testName + " - Passed");
@@ -32,5 +32,5 @@ public class TestCase_02_ValidateSignInFunctionality extends BaseClass {
             test.log(Status.FAIL, testName + " - Failed");
         }
     }
+    }
 
-}

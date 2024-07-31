@@ -7,11 +7,11 @@ import org.testng.annotations.Test;
 import pageComponent.BookingPage;
 import pageComponent.HomePage;
 
-public class TestCase_05_ValidateBookingPageDetails extends BaseClass {
+public class TestCase_05_ValidateBookingPageFailureFunctionality extends BaseClass {
 
     @BeforeTest
     public void setup() {
-        testName = "BookingPageFunctionality";
+        testName = "tc_05_validateBookingPageFailureFunctionality";
         testDescription = "BookingPageFunctionality";
         testCategory = "Regression";
         sheetName = "SpicejetBookingPageData";
@@ -19,12 +19,12 @@ public class TestCase_05_ValidateBookingPageDetails extends BaseClass {
 
 
     @Test(dataProvider = "getFromExcel", priority = 3)
-    public void tc_03_validateBookingPageFuntionality(String fName, String lName, String phone, String emailid, String cityname,
+    public void tc_05_validateBookingPageFailureFunctionality(String fName, String lName, String phone, String emailid, String cityname,
                                                          String textXpath, String expMsg) throws InterruptedException {
         HomePage hp = new HomePage();
         hp.selectOneWayTrip();
         BookingPage bp = new BookingPage();
-        String actMsg = bp.BookingPageFunctionality(fName, lName, phone,emailid,cityname, textXpath);
+        String actMsg = bp.bookingPageFunctionality(fName, lName, phone,emailid,cityname, textXpath);
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
             test.log(Status.PASS, testName + " - Passed");
@@ -33,19 +33,4 @@ public class TestCase_05_ValidateBookingPageDetails extends BaseClass {
         }
     }
 
-    @Test()
-    public void testCase_05_ValidateBookingPageDetails() throws Exception {
-        HomePage hp = new HomePage();
-        hp.selectOneWayTrip();
-        BookingPage bp = new BookingPage();
-        bp.BookingPageSuccessFunctionality();
-////        String expMsg = "Hi Naveen";
-////        softAssert(actMsg, expMsg);
-////        if (actMsg.equals(expMsg)) {
-////            test.log(Status.PASS, testName + " - Passed");
-////        } else {
-////            test.log(Status.FAIL, testName + " - Failed");
-////        }
-//    }
-    }
 }

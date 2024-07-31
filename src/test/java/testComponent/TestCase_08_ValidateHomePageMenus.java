@@ -8,18 +8,17 @@ import pageComponent.BookingPage;
 import pageComponent.HomePage;
 import pageComponent.PaymentPage;
 
-public class TestCase_06_ValidateHomePageMenus extends BaseClass {
+public class TestCase_08_ValidateHomePageMenus extends BaseClass {
 
     @BeforeTest
     public void setup() {
-        testName = "PaymentPageFunctionality";
+        testName = "tc_08_validateHomePageMenus";
         testDescription = "PaymentPageFunctionality";
         testCategory = "Regression";
-
     }
 
     @Test()
-    public void testCase_05_validateBookingPageDetails() throws Exception {
+    public void tc_08_validateHomePageMenus() throws Exception {
 
         try {
             HomePage hp = new HomePage();

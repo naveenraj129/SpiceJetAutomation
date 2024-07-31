@@ -3,45 +3,64 @@ package utils;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.time.Duration;
+import java.util.Properties;
 
 
 public class WebUtility extends GeneralUtility {
 
     public static WebDriver driver;
 
-    public static void openBrowser() {
 
-        driver = new FirefoxDriver();
+    public static String readProperty(String key) throws Exception {
+        String projectPath = System.getProperty("user.dir");
+        File file = new File(projectPath + "/SpiceJetApplication.properties");
+        FileInputStream fileInput = new FileInputStream(file);
+        Properties prop = new Properties();
+        prop.load(fileInput);
+        return prop.get(key).toString();
+    }
+
+    public static void openBrowser(String browser) {
+        if (browser.equalsIgnoreCase("chrome")) {
+            ChromeOptions options = new ChromeOptions();
+            driver = new ChromeDriver(options);
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            FirefoxOptions options = new FirefoxOptions();
+            driver = new FirefoxDriver(options);
+        } else if (browser.equalsIgnoreCase("edge")) {
+            driver = new EdgeDriver();
+        } else {
+            System.out.println("Opening Chrome browser as Default browser");
+            driver = new ChromeDriver();
+        }
         driver.manage().window().maximize();
         waitImplicit();
-
     }
 
-
-    public static void openWebsite() {
-
-        driver.get("https://www.spicejet.com/");
+    public static void openWebsite(String url) {
+        driver.get(url);
     }
-
 
     public static void typeText(WebElement element, String value) {
-
         element.sendKeys(value);
-
     }
-
 
     public static void chooseFromDropDown(WebElement element, String value) {
         Select ele = new Select(element);
         ele.selectByValue(value);
     }
-
 
     public static void elementClick(WebElement element) {
         element.click();
@@ -62,8 +81,13 @@ public class WebUtility extends GeneralUtility {
         return element.isDisplayed();
     }
 
+    public static boolean checkButtonIsClickable(WebElement element) {
+
+        return element.isSelected();
+    }
+
     public static void waitImplicit() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     public static void waitExplicitUntillTitle(String titleToWait) {
@@ -91,7 +115,7 @@ public class WebUtility extends GeneralUtility {
         wait.until(ExpectedConditions.elementToBeClickable(ele));
     }
 
-    public static void selectDRopDown(WebElement element) {
+    public static void selectDropDown(WebElement element) {
         Select dropdown = new Select(element);
         dropdown.selectByValue("India");
     }

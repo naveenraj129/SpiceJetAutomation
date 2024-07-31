@@ -15,76 +15,83 @@ public class HomePage extends WebUtility {
     WebElement loginButton;
 
     @FindBy(xpath = "//div[text()='one way']")
-    WebElement oneWayTrip;
+    WebElement oneWayTripRadioButton;
 
     @FindBy(xpath = "//div[contains(text(),'round trip')]")
-    WebElement roundTrip;
+    WebElement roundTripRadioButton;
 
     @FindBy(xpath = "(//input[contains(@class,'css-1cwyjr8 r-homxoj')])[1]")
-    WebElement selectOrigin;
+    WebElement originDropdown;
 
     @FindBy(xpath = "(//input[contains(@class,'css-1cwyjr8 r-homxoj')])[2]")
-    WebElement selectDestination;
+    WebElement destinationDropdown;
 
     @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[53]")
-    WebElement clickDepartureDate;
+    WebElement departureDatePicker;
 
     @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[54]")
-    WebElement clickReturnDate;
+    WebElement returnDatePicker;
 
     @FindBy(xpath = "(//div[text()='25'])[3]")
-    WebElement selectDepartureDate;
+    WebElement departureDateValue;
 
     @FindBy(xpath = "(//div[text()='9'])[4]")
-    WebElement selectReturnDate;
+    WebElement returnDateValue;
 
     @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[56]")
-    WebElement selectPassangers;
+    WebElement passangersDropdown;
 
     @FindBy(xpath = "//div[@data-testid='Adult-testID-plus-one-cta']")
-    WebElement selectNumberOfPassangers;
+    WebElement numberOfPassangersButton;
 
-    @FindBy(xpath = "//div[text() = 'INR']")
-    WebElement selectCurrency;
+    @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[57]")
+    WebElement currencyDropdown;
 
-    @FindBy(xpath = "(//div[text() ='INR'])[2]")
-    WebElement selectCurrencyType;
+    @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[58]//div[text()='INR']")
+    WebElement currencyTypeDropdown;
 
     @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[63]")
-    WebElement selectPeople;
+    WebElement peopleDropdown;
 
     @FindBy(xpath = "//div[@data-testid='home-page-flight-cta']")
-    WebElement clickSearchFlight;
+    WebElement searchFlightButton;
 
     @FindBy(xpath = "//div[@class='css-1dbjc4n r-1awozwy r-18u37iz r-1wtj0ep r-7e3msg']//div[@class='css-1dbjc4n r-1d09ksm r-18u37iz']//div[1]")
     WebElement oneWayTripSuccessMessege;
 
-
-
     @FindBy(xpath = "//div[text() = 'check-in']")
     WebElement checkInButton;
+
     @FindBy(xpath = "(//div[@class = 'css-1dbjc4n'])[43]//child::input")
-    WebElement ticketNumber;
+    WebElement ticketNumberInput;
+
     @FindBy(xpath = "(//div[@class = 'css-1dbjc4n'])[44]//child::input")
-    WebElement emailId;
+    WebElement emailIdInput;
+
     @FindBy(xpath = "//div[text() = 'Search Booking']")
     WebElement searchBookingButton;
 
     @FindBy(xpath = "//div[text()='flight status']")
     WebElement flightStatusButton;
+
     @FindBy(xpath = "(//div[@class = 'css-1dbjc4n'])[43]")
-    WebElement FSdepartureDate;
+    WebElement fsDepartureDatePicker;
+
     @FindBy(xpath = "//div[text() ='Tomorrow']")
-    WebElement FSdepartureTimeButton;
-     @FindBy(xpath = "//div[text()='Search Flights']")
+    WebElement fsDepartureTimeButton;
+
+    @FindBy(xpath = "//div[text()='Search Flights']")
     WebElement SearchFlightsButton;
 
     @FindBy(xpath = "//div[text()='manage booking']")
     WebElement manageBookingButton;
+
     @FindBy(xpath = "(//div[@class = 'css-1dbjc4n'])[43]//child::input")
     WebElement MBticketNumber;
+
     @FindBy(xpath = "(//div[@class = 'css-1dbjc4n'])[44]//child::input")
     WebElement MBemailId;
+
     @FindBy(xpath = "//div[text() = 'Search Booking']")
     WebElement MBsearchBookingButton;
 
@@ -98,59 +105,57 @@ public class HomePage extends WebUtility {
     }
 
     public void goToLogin() {
+        waitExplicit(loginButton, 10);
         elementClick(loginButton);
     }
 
     public String selectOneWayTrip() throws InterruptedException {
-
-        elementClick(oneWayTrip);
-        jsClickOn(selectOrigin);
-        typeText(selectOrigin, "Del");
+        elementClick(oneWayTripRadioButton);
+        jsClickOn(originDropdown);
+        typeText(originDropdown, "Del");
+        Thread.sleep(3000);
+        typeText(destinationDropdown, "Mumbai");
         Thread.sleep(2000);
-        typeText(selectDestination, "Bom");
-        elementClick(selectDepartureDate);
-        elementClick(selectPassangers);
-        elementClick(selectCurrency);
-        elementClick(selectCurrencyType);
-        elementClick(clickSearchFlight);
-
-        Thread.sleep(4000);
+        elementClick(departureDateValue);
+        explicitWait(searchFlightButton, 10);
+        elementClick(searchFlightButton);
         String actMsg = oneWayTripSuccessMessege.getText();
         return actMsg;
     }
 
     public String selectRoundTrip() throws InterruptedException {
-        elementClick(roundTrip);
-        jsClickOn(selectOrigin);
-        typeText(selectOrigin, "Del");
-        Thread.sleep(2000);
-        typeText(selectDestination, "Bom");
-        elementClick(selectDepartureDate);
-        elementClick(selectReturnDate);
-        elementClick(selectPassangers);
-        elementClick(selectCurrency);
-        elementClick(selectCurrencyType);
-        elementClick(clickSearchFlight);
-        Thread.sleep(4000);
+        elementClick(roundTripRadioButton);
+        jsClickOn(originDropdown);
+        typeText(originDropdown, "Del");
+        Thread.sleep(3000);
+        typeText(destinationDropdown, "Mumbai");
+        elementClick(departureDateValue);
+        elementClick(returnDateValue);
+        elementClick(currencyDropdown);
+        explicitWait(currencyTypeDropdown, 10);
+        elementClick(currencyTypeDropdown);
+        explicitWait(searchFlightButton, 10);
+        elementClick(searchFlightButton);
+        explicitWait(oneWayTripSuccessMessege , 10);
         String actMsg = oneWayTripSuccessMessege.getText();
         return actMsg;
     }
 
-    public void HomePageFlightMenus(){
+    public void HomePageFlightMenus() {
         elementClick(checkInButton);
-        checkMenusIsDisplayed(ticketNumber);
-        checkMenusIsDisplayed(emailId);
+        checkMenusIsDisplayed(ticketNumberInput);
+        checkMenusIsDisplayed(emailIdInput);
         checkMenusIsDisplayed(searchBookingButton);
         elementClick(flightStatusButton);
-        elementClick(FSdepartureDate);
-        elementClick(FSdepartureTimeButton);
-        typeText(selectOrigin , "Del");
-        elementClick(selectDestination);
-        typeText(selectDestination , "Mum");
+        elementClick(fsDepartureDatePicker);
+        elementClick(fsDepartureTimeButton);
+        typeText(originDropdown, "Del");
+        elementClick(destinationDropdown);
+        typeText(destinationDropdown, "Mum");
         jsClickOn(SearchFlightsButton);
         elementClick(manageBookingButton);
-        checkMenusIsDisplayed(ticketNumber);
-        checkMenusIsDisplayed(emailId);
+        checkMenusIsDisplayed(ticketNumberInput);
+        checkMenusIsDisplayed(emailIdInput);
         checkMenusIsDisplayed(searchBookingButton);
     }
 

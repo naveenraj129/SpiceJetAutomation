@@ -1,7 +1,6 @@
 package pageComponent;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -10,34 +9,34 @@ import utils.WebUtility;
 public class BookingPage extends WebUtility {
 
     @FindBy(xpath = "(//div[@class='css-1dbjc4n'])[33]")
-    WebElement flightSelection;
+    WebElement flightSelectionRadioButton;
 
     @FindBy(xpath = "//div[@data-testid='continue-search-page-cta']")
-    WebElement FScontinueButton;
+    WebElement fsContinueButton;
 
     @FindBy(xpath = "//input[@data-testid='first-inputbox-contact-details']")
-    WebElement firstName;
+    WebElement firstNameInput;
 
     @FindBy(xpath = "//input[@data-testid='last-inputbox-contact-details']")
-    WebElement lastName;
+    WebElement lastNameInput;
 
     @FindBy(xpath = "//input[@data-testid='contact-number-input-box']")
-    WebElement contactNumber;
+    WebElement contactNumberInput;
 
     @FindBy(xpath = "//input[@data-testid='emailAddress-inputbox-contact-details']")
-    WebElement emailAddress;
+    WebElement emailAddressInput;
 
     @FindBy(xpath = "//input[@data-testid='city-inputbox-contact-details']")
-    WebElement cityName;
+    WebElement cityNameInput;
 
     @FindBy(xpath = "//input[@data-testid='traveller-0-first-traveller-info-input-box']")
-    WebElement travellerFirstName;
+    WebElement travellerFirstNameInput;
 
     @FindBy(xpath = "//input[@data-testid='traveller-0-last-traveller-info-input-box']")
-    WebElement travellerLastName;
+    WebElement travellerLastNameInput;
 
     @FindBy(xpath = "//input[@data-testid='sc-member-mobile-number-input-box']")
-    WebElement travellerMobileNumber;
+    WebElement travellerMobileNumberInput;
 
     @FindBy(xpath = "//div[@data-testid='traveller-info-continue-cta']")
     WebElement continueButton;
@@ -50,8 +49,12 @@ public class BookingPage extends WebUtility {
 
     @FindBy(xpath = "(//div[@data-testid = 'add-ons-continue-footer-button'])[3]")
     WebElement continueButton2;
+
     @FindBy(xpath = "(//span[@id = 'skipfrompopup'])[1]")
-    WebElement skipAlert;
+    WebElement skipAlertButton;
+
+ @FindBy(xpath = "//div[text() ='Payment Methods']")
+    WebElement bookingPageSuccessValidate;
 
 
     public BookingPage() {
@@ -59,51 +62,53 @@ public class BookingPage extends WebUtility {
     }
 
 
-    public String BookingPageFunctionality(String fName, String lName, String phone, String emailid, String cityname,
-                                              String textXpath) throws InterruptedException {
+    public String bookingPageFunctionality(String fName, String lName, String phone, String emailid, String cityname,
+                                           String textXpath) {
 
-        jsScrollUntillElement(flightSelection);
-        jsClickOn(flightSelection);
-        Thread.sleep(2000);
-        elementClick(FScontinueButton);
-        typeText(firstName, fName);
-        typeText(lastName, lName);
-        typeText(contactNumber , phone);
-        typeText(emailAddress, emailid);
-        typeText(cityName, cityname);
+        jsScrollUntillElement(flightSelectionRadioButton);
+        jsClickOn(flightSelectionRadioButton);
+        explicitWait(fsContinueButton, 15);
+        elementClick(fsContinueButton);
+        typeText(firstNameInput, fName);
+        typeText(lastNameInput, lName);
+        typeText(contactNumberInput, phone);
+        typeText(emailAddressInput, emailid);
+        typeText(cityNameInput, cityname);
 
         String actMsg = driver.findElement(By.xpath("" + textXpath + "")).getText();
         return actMsg;
     }
 
-    public void BookingPageSuccessFunctionality() throws InterruptedException {
-        jsScrollUntillElement(flightSelection);
-        jsClickOn(flightSelection);
-        Thread.sleep(2000);
-        elementClick(FScontinueButton);
-        elementClick(firstName);
-        typeText(firstName, "NAVEEN");
-        elementClick(lastName);
-        typeText(lastName, "Raj");
-        elementClick(contactNumber);
-        typeText(contactNumber, "8778335842");
-        elementClick(emailAddress);
-        typeText(emailAddress, "noreply@gmail.com");
-        elementClick(cityName);
-        typeText(cityName, "Coimbatore");
-        elementClick(travellerFirstName);
-        typeText(travellerFirstName, "Naveen");
-        elementClick(travellerLastName);
-        typeText(travellerLastName, "Raj");
-        elementClick(travellerMobileNumber);
-        typeText(travellerMobileNumber, "8778335842");
+    public String bookingPageSuccessFunctionality() throws InterruptedException {
+        jsScrollUntillElement(flightSelectionRadioButton);
+        jsClickOn(flightSelectionRadioButton);
+        waitExplicit(fsContinueButton , 20);
+        elementClick(fsContinueButton);
+       Thread.sleep(5000);
+        elementClick(firstNameInput);
+        typeText(firstNameInput, "NAVEEN");
+        elementClick(lastNameInput);
+        typeText(lastNameInput, "Raj");
+        elementClick(contactNumberInput);
+        typeText(contactNumberInput, "8778335842");
+        elementClick(emailAddressInput);
+        typeText(emailAddressInput, "noreply@gmail.com");
+        elementClick(cityNameInput);
+        typeText(cityNameInput, "Coimbatore");
+        elementClick(travellerFirstNameInput);
+        typeText(travellerFirstNameInput, "Naveen");
+        elementClick(travellerLastNameInput);
+        typeText(travellerLastNameInput, "Raj");
+        elementClick(travellerMobileNumberInput);
+        typeText(travellerMobileNumberInput, "8778335842");
         elementClick(continueButton);
-        Thread.sleep(4000);
-        elementClick(continueButton2);
-        elementClick(skipAlert);
-        Thread.sleep(4000);
-
+        waitExplicit(continueButton2 , 30);
+        jsClickOn(continueButton2);
+        waitExplicit(skipAlertButton , 20);
+        jsClickOn(skipAlertButton);
+       explicitWait(bookingPageSuccessValidate , 25);
+        String actMsg = bookingPageSuccessValidate.getText();
+        return actMsg;
     }
-
 
 }
