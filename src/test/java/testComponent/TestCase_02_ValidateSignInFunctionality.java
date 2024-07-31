@@ -15,7 +15,6 @@ public class TestCase_02_ValidateSignInFunctionality extends BaseClass {
         testName = "tc_02_validateSignInFunctionality";
         testDescription = "Sign-In Functionality";
         testCategory = "Regression";
-
     }
 
     @Test(priority = 2)

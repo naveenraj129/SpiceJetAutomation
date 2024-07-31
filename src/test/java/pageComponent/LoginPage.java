@@ -18,18 +18,17 @@ public class LoginPage extends WebUtility {
 
 
     public LoginPage() {
-
         PageFactory.initElements(driver, this);
     }
 
     public String validateSignInPage() {
-        explicitWait(phoneNumber, 15);
+        explicitWait(phoneNumber, 25);
         typeText(phoneNumber, "8778335842");
         typeText(passwordBox, "EVANaura@129");
         waitExplicit(signInButton, 10);
         elementClick(signInButton);
+        explicitWait(successMessage, 15);
         String actMsg = successMessage.getText();
         return actMsg;
-//
     }
 }

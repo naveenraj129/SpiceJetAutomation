@@ -16,10 +16,9 @@ import pageComponent.PaymentPage;
             testName = "tc_07_validatePaymentPageFunctionality";
             testDescription = "PaymentPageFunctionality";
             testCategory = "Regression";
-
         }
 
-        @Test()
+        @Test(priority = 7)
         public void tc_07_validatePaymentPageFunctionality() throws Exception {
             HomePage hp = new HomePage();
             hp.selectOneWayTrip();

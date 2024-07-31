@@ -17,7 +17,7 @@ public class TestCase_08_ValidateHomePageMenus extends BaseClass {
         testCategory = "Regression";
     }
 
-    @Test()
+    @Test(priority = 8)
     public void tc_08_validateHomePageMenus() throws Exception {
 
         try {

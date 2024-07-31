@@ -18,7 +18,7 @@ public class TestCase_05_ValidateBookingPageFailureFunctionality extends BaseCla
     }
 
 
-    @Test(dataProvider = "getFromExcel", priority = 3)
+    @Test(dataProvider = "getFromExcel", priority = 5)
     public void tc_05_validateBookingPageFailureFunctionality(String fName, String lName, String phone, String emailid, String cityname,
                                                          String textXpath, String expMsg) throws InterruptedException {
         HomePage hp = new HomePage();

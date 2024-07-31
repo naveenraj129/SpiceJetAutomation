@@ -18,7 +18,7 @@ public class TestCase_06_ValidateBookingPageSuccessFunctionality extends BaseCla
 
     }
 
-    @Test()
+    @Test(priority = 6)
     public void tc_06_validateBookingPageSuccessFunctionality() throws Exception {
         HomePage hp = new HomePage();
         hp.selectOneWayTrip();

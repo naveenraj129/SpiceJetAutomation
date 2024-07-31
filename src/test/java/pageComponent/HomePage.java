@@ -100,6 +100,7 @@ public class HomePage extends WebUtility {
     }
 
     public void goToCreateAccount() {
+        waitExplicit(signUpButton, 15);
         elementClick(signUpButton);
         switchingTabs();
     }
@@ -110,7 +111,7 @@ public class HomePage extends WebUtility {
     }
 
     public String selectOneWayTrip() throws InterruptedException {
-        elementClick(oneWayTripRadioButton);
+//        elementClick(oneWayTripRadioButton);
         jsClickOn(originDropdown);
         typeText(originDropdown, "Del");
         Thread.sleep(3000);
@@ -119,11 +120,13 @@ public class HomePage extends WebUtility {
         elementClick(departureDateValue);
         explicitWait(searchFlightButton, 10);
         elementClick(searchFlightButton);
+        explicitWait(oneWayTripSuccessMessege, 25);
         String actMsg = oneWayTripSuccessMessege.getText();
         return actMsg;
     }
 
     public String selectRoundTrip() throws InterruptedException {
+        Thread.sleep(1000);
         elementClick(roundTripRadioButton);
         jsClickOn(originDropdown);
         typeText(originDropdown, "Del");
@@ -136,7 +139,7 @@ public class HomePage extends WebUtility {
         elementClick(currencyTypeDropdown);
         explicitWait(searchFlightButton, 10);
         elementClick(searchFlightButton);
-        explicitWait(oneWayTripSuccessMessege , 10);
+        explicitWait(oneWayTripSuccessMessege, 10);
         String actMsg = oneWayTripSuccessMessege.getText();
         return actMsg;
     }

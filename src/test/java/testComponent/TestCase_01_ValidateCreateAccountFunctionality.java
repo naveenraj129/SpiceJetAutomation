@@ -12,7 +12,7 @@ import pageComponent.SignupPage;
 public class TestCase_01_ValidateCreateAccountFunctionality extends BaseClass {
     @BeforeTest
     public void setup() {
-        testName = "tc_03_validateCreateAccountFunctionality";
+        testName = "tc_01_validateCreateAccountFunctionality";
         testDescription = "CreatAccount Functionality";
         testCategory = "Regression";
     }

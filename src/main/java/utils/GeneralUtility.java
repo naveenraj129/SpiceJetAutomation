@@ -37,7 +37,6 @@ public class GeneralUtility {
         driver.switchTo().window((String) listwindow.get(1));
     }
 
-
     public static void softAssert(String actResult, String expResult) {
         SoftAssert sa = new SoftAssert();
         sa.assertEquals(actResult, expResult);

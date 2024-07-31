@@ -53,7 +53,7 @@ public class BookingPage extends WebUtility {
     @FindBy(xpath = "(//span[@id = 'skipfrompopup'])[1]")
     WebElement skipAlertButton;
 
- @FindBy(xpath = "//div[text() ='Payment Methods']")
+    @FindBy(xpath = "//div[text() ='Payment Methods']")
     WebElement bookingPageSuccessValidate;
 
 
@@ -63,12 +63,13 @@ public class BookingPage extends WebUtility {
 
 
     public String bookingPageFunctionality(String fName, String lName, String phone, String emailid, String cityname,
-                                           String textXpath) {
+                                           String textXpath) throws InterruptedException {
 
         jsScrollUntillElement(flightSelectionRadioButton);
         jsClickOn(flightSelectionRadioButton);
         explicitWait(fsContinueButton, 15);
         elementClick(fsContinueButton);
+        Thread.sleep(4000);
         typeText(firstNameInput, fName);
         typeText(lastNameInput, lName);
         typeText(contactNumberInput, phone);
@@ -82,9 +83,9 @@ public class BookingPage extends WebUtility {
     public String bookingPageSuccessFunctionality() throws InterruptedException {
         jsScrollUntillElement(flightSelectionRadioButton);
         jsClickOn(flightSelectionRadioButton);
-        waitExplicit(fsContinueButton , 20);
+        waitExplicit(fsContinueButton, 20);
         elementClick(fsContinueButton);
-       Thread.sleep(5000);
+        Thread.sleep(5000);
         elementClick(firstNameInput);
         typeText(firstNameInput, "NAVEEN");
         elementClick(lastNameInput);
@@ -102,11 +103,11 @@ public class BookingPage extends WebUtility {
         elementClick(travellerMobileNumberInput);
         typeText(travellerMobileNumberInput, "8778335842");
         elementClick(continueButton);
-        waitExplicit(continueButton2 , 30);
+        Thread.sleep(5000);
         jsClickOn(continueButton2);
-        waitExplicit(skipAlertButton , 20);
+        waitExplicit(skipAlertButton, 20);
         jsClickOn(skipAlertButton);
-       explicitWait(bookingPageSuccessValidate , 25);
+        explicitWait(bookingPageSuccessValidate, 25);
         String actMsg = bookingPageSuccessValidate.getText();
         return actMsg;
     }

@@ -21,12 +21,6 @@ public class SignupPage extends WebUtility {
     @FindBy(xpath = "//input[@id='last_name']")
     WebElement lastName;
 
-    @FindBy(xpath = "//select[@class = 'form-control form-select ']")
-    WebElement dropDownElement;
-
-    @FindBy(xpath = "//option[text() = 'India']")
-    WebElement countryDropDown;
-
     @FindBy(xpath = "//input[@id='dobDate']")
     WebElement datePicker;
     @FindBy(xpath = "//div[text() = '12']")
@@ -71,6 +65,7 @@ public class SignupPage extends WebUtility {
         jsClickOn(phoneNumber);
         typeText(phoneNumber, "8778335842");
         Thread.sleep(2000);
+        explicitWait(emailId, 15);
         elementClick(emailId);
         typeText(emailId, "naveen1@gmail.com");
         typeText(newPassword, "EVANaura@129");

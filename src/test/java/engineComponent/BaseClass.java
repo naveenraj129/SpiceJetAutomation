@@ -19,7 +19,6 @@ public class BaseClass extends WebUtility {
         test.assignCategory(testCategory);
     }
 
-
     @BeforeMethod
     public void beforeMethod() throws Exception {
         openBrowser(readProperty("browser"));
@@ -28,7 +27,7 @@ public class BaseClass extends WebUtility {
 
     @AfterMethod
     public void afterMethod() {
-//        closeBrowser();
+        closeBrowser();
     }
 
     @DataProvider

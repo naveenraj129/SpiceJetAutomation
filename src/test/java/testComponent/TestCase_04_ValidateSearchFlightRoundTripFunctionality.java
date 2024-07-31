@@ -13,7 +13,6 @@ public class TestCase_04_ValidateSearchFlightRoundTripFunctionality extends Base
         testName = "tc_04_validateSearchFlightRoundTripFunctionality";
         testDescription = "SearchFlightRoundTripFunctionality";
         testCategory = "Regression";
-
     }
 
     @Test(priority = 4)

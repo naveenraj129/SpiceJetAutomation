@@ -23,7 +23,6 @@ public class PaymentPage extends BaseClass {
     @FindBy(xpath = "//div[@class= 'security_code_div']//child::iframe")
     WebElement iFrameCVV;
 
-
     @FindBy(xpath = "//input[@id='card_number']")
     WebElement cardNumber;
 
@@ -55,7 +54,7 @@ public class PaymentPage extends BaseClass {
         explicitWait(iFrameCardNumber , 5);
         switchToFrame(iFrameCardNumber);
         //if this fails try with someother dummy number
-        typeText(cardNumber,  "5105105105105100");
+        typeText(cardNumber,  "4242 4242 4242 4242");
         switchBackFromFrame();
         explicitWait(iFrameCardNumber , 5);
         switchToFrame(iFrameCardName);
