@@ -8,7 +8,6 @@ import utils.WebUtility;
 
 public class SignupPage extends WebUtility {
 
-
     @FindBy(xpath = "//select[@class = 'form-control form-select ']")
     WebElement selectTitle;
 
@@ -47,12 +46,10 @@ public class SignupPage extends WebUtility {
     @FindBy(xpath = "//div[text()='Member account exists with given mobile number']")
     WebElement errorMessege;
 
-
     public SignupPage() {
 
         PageFactory.initElements(driver, this);
     }
-
 
     public String createAccountSuccessFunctionality() throws InterruptedException {
         explicitWait(selectTitle, 15);

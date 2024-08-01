@@ -1,6 +1,5 @@
 package testComponent;
 
-import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,24 +11,23 @@ public class TestCase_05_ValidateBookingPageFailureFunctionality extends BaseCla
     @BeforeTest
     public void setup() {
         testName = "tc_05_validateBookingPageFailureFunctionality";
-        testDescription = "BookingPageFunctionality";
+        testDescription = " Booking Page Failure Functionality";
         testCategory = "Regression";
         sheetName = "SpicejetBookingPageData";
     }
 
-
     @Test(dataProvider = "getFromExcel", priority = 5)
     public void tc_05_validateBookingPageFailureFunctionality(String fName, String lName, String phone, String emailid, String cityname,
-                                                         String textXpath, String expMsg) throws InterruptedException {
+                                                              String textXpath, String expMsg) throws Exception {
         HomePage hp = new HomePage();
         hp.selectOneWayTrip();
         BookingPage bp = new BookingPage();
-        String actMsg = bp.bookingPageFunctionality(fName, lName, phone,emailid,cityname, textXpath);
+        String actMsg = bp.bookingPageFunctionality(fName, lName, phone, emailid, cityname, textXpath);
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
-            test.log(Status.PASS, testName + " - Passed");
+            reportStep("Validating BookingPage Failure Functionality - Pass", "Pass", testName);
         } else {
-            test.log(Status.FAIL, testName + " - Failed");
+            reportStep("Validating BookingPage Failure Functionality - Fail", "Fail", testName);
         }
     }
 

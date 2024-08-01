@@ -1,6 +1,5 @@
 package testComponent;
 
-import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,7 +12,7 @@ public class TestCase_06_ValidateBookingPageSuccessFunctionality extends BaseCla
     @BeforeTest
     public void setup() {
         testName = "tc_06_validateBookingPageSuccessFunctionality";
-        testDescription = "BookingPageFunctionality";
+        testDescription = "Booking page successfully validated";
         testCategory = "Regression";
 
     }
@@ -27,10 +26,10 @@ public class TestCase_06_ValidateBookingPageSuccessFunctionality extends BaseCla
         String expMsg = "Payment Methods";
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
-            test.log(Status.PASS, testName + " - Passed");
+            reportStep("Validating BookingPage Success Functionality - Pass", "Pass", testName);
         } else {
-            test.log(Status.FAIL, testName + " - Failed");
+            reportStep("Validating BookingPage Success Functionality - Fail", "Fail", testName);
         }
     }
-    }
+}
 

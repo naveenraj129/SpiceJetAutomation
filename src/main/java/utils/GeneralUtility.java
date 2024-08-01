@@ -2,11 +2,15 @@ package utils;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.MediaEntityBuilder;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.testng.asserts.SoftAssert;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,7 +20,6 @@ import java.util.Set;
 import static utils.WebUtility.driver;
 
 public class GeneralUtility {
-
     public static ExtentReports report;
     public static ExtentTest test;
     public static String sheetName;
@@ -24,12 +27,6 @@ public class GeneralUtility {
     public String testDescription;
     public String testCategory;
 
-
-    public static void reportInit() {
-        ExtentHtmlReporter html = new ExtentHtmlReporter(System.getProperty("user.dir") + "/report1.html");
-        report = new ExtentReports();
-        report.attachReporter(html);
-    }
 
     public static void switchingTabs() {
         Set<String> WindowHandles = driver.getWindowHandles();
@@ -41,7 +38,6 @@ public class GeneralUtility {
         SoftAssert sa = new SoftAssert();
         sa.assertEquals(actResult, expResult);
     }
-
 
     public static Object[][] dataReader(String sheetName) throws IOException {
         String excelPath = "/Users/evanjalinmuthuraj/Desktop/SpiceJet Automation/src/test/resource/SpicejetData.xlsx";
@@ -61,6 +57,28 @@ public class GeneralUtility {
 
         excelFile.close();
         return data;
+    }
+
+    public static int screenShot(String testName) throws Exception {
+        int ranNum = (int) (Math.random() * 9999999 + 1000000);
+        Thread.sleep(3000);
+        String projectPath = System.getProperty("user.dir");
+        FileUtils.copyFile(((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE),
+                new File(projectPath + "/Screenshot/" + testName + ranNum + ".png"));
+        return ranNum;
+    }
+
+    public void reportStep(String stepDetails, String stepStatus, String testName) throws Exception {
+        int ranNum = screenShot(testName);
+        String projectPath = System.getProperty("user.dir");
+        if (stepStatus.equalsIgnoreCase("pass")) {
+            test.pass(stepDetails,
+                    MediaEntityBuilder.createScreenCaptureFromPath(projectPath + "/Screenshot/" + testName + ranNum + ".png").build());
+        } else if (stepStatus.equalsIgnoreCase("fail")) {
+            test.fail(stepDetails,
+                    MediaEntityBuilder.createScreenCaptureFromPath(projectPath + "/Screenshot/" + testName + ranNum + ".png").build());
+            throw new RuntimeException("See extent report for more details");
+        }
     }
 
 

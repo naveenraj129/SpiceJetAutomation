@@ -1,38 +1,32 @@
 package testComponent;
 
-import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
-import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageComponent.HomePage;
-
 import pageComponent.SignupPage;
 
 public class TestCase_01_ValidateCreateAccountFunctionality extends BaseClass {
     @BeforeTest
     public void setup() {
         testName = "tc_01_validateCreateAccountFunctionality";
-        testDescription = "CreatAccount Functionality";
+        testDescription = "CreatAccount Test";
         testCategory = "Regression";
     }
 
 
     @Test
-    public void tc_01_validateSuccessCreateAccountFunctionality() throws InterruptedException {
-
+    public void tc_01_validateSuccessCreateAccountFunctionality() throws Exception {
         HomePage hp = new HomePage();
         hp.goToCreateAccount();
         SignupPage sp = new SignupPage();
         String actMsg = sp.createAccountSuccessFunctionality();
         String expMsg = "Member account exists with given mobile number";
-        System.out.println(actMsg);
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
-            test.log(Status.PASS, testName + " - Passed");
+            reportStep("Validating CreatAccount Functionality - Pass", "Pass", testName);
         } else {
-            test.log(Status.FAIL, testName + " - Failed");
+            reportStep("Validating CreatAccount Functionality - Fail", "Fail", testName);
         }
-
     }
 }

@@ -1,16 +1,18 @@
 package engineComponent;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import org.testng.annotations.*;
-
 import utils.WebUtility;
 
 
 public class BaseClass extends WebUtility {
 
-
     @BeforeSuite
     public void startReport() {
-        reportInit();
+        ExtentHtmlReporter reporter = new ExtentHtmlReporter("./reports/result.html");
+        report = new ExtentReports();
+        report.attachReporter(reporter);
     }
 
     @BeforeClass
@@ -38,7 +40,6 @@ public class BaseClass extends WebUtility {
 
     @AfterSuite
     public void endReport() {
-
         report.flush();
     }
 }

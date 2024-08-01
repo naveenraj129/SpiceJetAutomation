@@ -7,7 +7,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class PaymentPage extends BaseClass {
 
-
     @FindBy(tagName = "iframe")
     WebElement iFrameCardNumber;
 
@@ -41,7 +40,7 @@ public class PaymentPage extends BaseClass {
     @FindBy(xpath = "//div[@data-testid='common-proceed-to-pay']")
     WebElement proceedToPayButton;
 
- @FindBy(xpath = "//div[text()='Payment Failure']")
+    @FindBy(xpath = "//div[text()='Payment Failure']")
     WebElement errorMessage;
 
 
@@ -49,30 +48,29 @@ public class PaymentPage extends BaseClass {
         PageFactory.initElements(driver, this);
     }
 
-
-    public String paymentDetailsPage() throws InterruptedException {
-        explicitWait(iFrameCardNumber , 5);
+    public String paymentDetailsPage() {
+        explicitWait(iFrameCardNumber, 5);
         switchToFrame(iFrameCardNumber);
         //if this fails try with someother dummy number
-        typeText(cardNumber,  "4242 4242 4242 4242");
+        typeText(cardNumber, "4242 4242 4242 4242");
         switchBackFromFrame();
-        explicitWait(iFrameCardNumber , 5);
+        explicitWait(iFrameCardNumber, 5);
         switchToFrame(iFrameCardName);
         typeText(nameOnCard, "Naveen");
         switchBackFromFrame();
-        explicitWait(iFrameExpMonth , 5);
+        explicitWait(iFrameExpMonth, 5);
         switchToFrame(iFrameExpMonth);
         typeText(expMonthNumber, "09");
         switchBackFromFrame();
-        explicitWait(iFrameExpYear , 5);
+        explicitWait(iFrameExpYear, 5);
         switchToFrame(iFrameExpYear);
         typeText(expYearNumber, "28");
         switchBackFromFrame();
-        explicitWait(iFrameCVV , 5);
+        explicitWait(iFrameCVV, 5);
         switchToFrame(iFrameCVV);
         typeText(securityCode, "167");
         switchBackFromFrame();
-        waitExplicit(proceedToPayButton , 30);
+        waitExplicit(proceedToPayButton, 30);
         elementClick(proceedToPayButton);
         String actMsg = errorMessage.getText();
         return actMsg;

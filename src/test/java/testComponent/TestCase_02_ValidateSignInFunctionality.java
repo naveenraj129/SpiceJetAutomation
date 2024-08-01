@@ -1,6 +1,5 @@
 package testComponent;
 
-import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -13,12 +12,12 @@ public class TestCase_02_ValidateSignInFunctionality extends BaseClass {
     @BeforeTest
     public void setup() {
         testName = "tc_02_validateSignInFunctionality";
-        testDescription = "Sign-In Functionality";
+        testDescription = "Sign-In Test";
         testCategory = "Regression";
     }
 
     @Test(priority = 2)
-    public void tc_02_validateSignInFunctionality() throws InterruptedException {
+    public void tc_02_validateSignInFunctionality() throws Exception {
         HomePage hp = new HomePage();
         hp.goToLogin();
         LoginPage ln = new LoginPage();
@@ -26,9 +25,9 @@ public class TestCase_02_ValidateSignInFunctionality extends BaseClass {
         String expMsg = "Hi Naveen";
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
-            test.log(Status.PASS, testName + " - Passed");
+            reportStep("Validating SignIn Functionality - Pass", "Pass", testName);
         } else {
-            test.log(Status.FAIL, testName + " - Failed");
+            reportStep("Validating SignIn Functionality - Fail", "Fail", testName);
         }
     }
 

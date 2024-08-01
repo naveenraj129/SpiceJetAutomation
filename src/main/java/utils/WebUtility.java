@@ -53,14 +53,11 @@ public class WebUtility extends GeneralUtility {
         driver.get(url);
     }
 
+
     public static void typeText(WebElement element, String value) {
         element.sendKeys(value);
     }
 
-    public static void chooseFromDropDown(WebElement element, String value) {
-        Select ele = new Select(element);
-        ele.selectByValue(value);
-    }
 
     public static void elementClick(WebElement element) {
         element.click();
@@ -77,12 +74,10 @@ public class WebUtility extends GeneralUtility {
     }
 
     public static boolean checkMenusIsDisplayed(WebElement element) {
-
         return element.isDisplayed();
     }
 
     public static boolean checkButtonIsClickable(WebElement element) {
-
         return element.isSelected();
     }
 
@@ -96,12 +91,10 @@ public class WebUtility extends GeneralUtility {
     }
 
     public static void jsScrollUntillElement(WebElement element) {
-
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
     public static void jsClickOn(WebElement element) {
-
         ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
 
@@ -115,33 +108,28 @@ public class WebUtility extends GeneralUtility {
         wait.until(ExpectedConditions.elementToBeClickable(ele));
     }
 
-    public static void selectDropDown(WebElement element) {
+    public static void selectDropDown(WebElement element, String value) {
         Select dropdown = new Select(element);
-        dropdown.selectByValue("India");
+        dropdown.selectByValue(value);
     }
 
     public static void switchToFrame(WebElement element) {
-
         driver.switchTo().frame(element);
     }
 
 
     public static void switchBackFromFrame() {
-
         driver.switchTo().defaultContent();
     }
 
 
     public static String extractText(WebElement element) {
-
         return element.getText();
     }
 
 
     public static void closeBrowser() {
-
         driver.quit();
-
     }
 
 }

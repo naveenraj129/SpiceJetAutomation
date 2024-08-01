@@ -31,7 +31,6 @@
             <class name="testComponent.TestCase_06_ValidateBookingPageSuccessFunctionality"/>
         </classes>
     </test>
-
     <test name="tc_07_validatePaymentPageFunctionality">
         <classes>
             <class name="testComponent.TestCase_07_ValidatePaymentPageFunctionality"/>

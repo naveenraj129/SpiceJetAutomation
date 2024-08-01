@@ -1,6 +1,5 @@
 package testComponent;
 
-import com.aventstack.extentreports.Status;
 import engineComponent.BaseClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -12,22 +11,21 @@ public class TestCase_03_ValidateSearchFlightOnewayTripFunctionality extends Bas
     @BeforeTest
     public void setup() {
         testName = "tc_03_validateSearchFlightOneWayTripFunctionality";
-        testDescription = "SearchFlightOnewayFunctionality";
+        testDescription = "Search flight Oneway trip Test";
         testCategory = "Regression";
-
     }
 
     @Test(priority = 3)
-    public void tc_03_validateSearchFlightOneWayTripFunctionality() throws InterruptedException {
+    public void tc_03_validateSearchFlightOneWayTripFunctionality() throws Exception {
         HomePage hp = new HomePage();
         String actMsg = hp.selectOneWayTrip();
 
         String expMsg = "Select your Departure to Mumbai";
         softAssert(actMsg, expMsg);
         if (actMsg.equals(expMsg)) {
-            test.log(Status.PASS, testName + " - Passed");
+            reportStep("Validating Oneway Trip Functionality - Pass", "Pass", testName);
         } else {
-            test.log(Status.FAIL, testName + " - Failed");
+            reportStep("Validating Oneway Trip Functionality - Fail", "Fail", testName);
         }
     }
 }
